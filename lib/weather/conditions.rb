@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Returns the current weather conditions as an OpenStruct object for the provided latitude and longitude
 module Weather
   class Conditions < Base
     # Setting units to imperial by default since its most commonly use in the US.

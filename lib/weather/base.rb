@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This class encapsulates an HTTP client for calling the OpenWeatherMap API.
+# Raise a ServiceError if the 3rd party service encounter an issue.
 module Weather
   class Base
     attr_reader :latitude, :longitude, :units
@@ -15,8 +17,7 @@ module Weather
         appid: Rails.application.credentials.open_weather_map[:key],
         units: units,
         lat: latitude,
-        lon: longitude,
-        
+        lon: longitude
       )
     rescue Faraday::ClientError, Faraday::ServerError => e
       raise ServiceError, e.response_body

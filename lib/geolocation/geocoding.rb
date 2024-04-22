@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-# require_relative 'error/not_found_error'
-
+# Returns a Geocoder::Result object containing address, postal_code,
+# latitude, longitude.
+# Raise a NotFoundError if no location is found.
 module Geolocation
   class Geocoding
     def self.search(address)
