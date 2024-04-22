@@ -1,0 +1,26 @@
+<div class="container text-center">
+  <div class="row">
+    <div class="column"> </div>
+    <div class="column">
+      <% if @weather %>
+        <h1>Current conditions in <%= @weather.name %></h1>
+        <%= image_tag "https://openweathermap.org/img/wn/#{@weather.icon}@4x.png", :title => @weather.description %>
+        <h3><%= @weather.description %></h3>
+        <h4>Temperature: <%= @weather.temp %>&deg;<%= @weather.units %></h4>
+        <h5>Real Feel: <%= @weather.feels_like %>&deg;<%= @weather.units %></h5>
+        <p>Temperature low / high: <%= @weather.temp_min %>&deg;<%= @weather.units %> / <%= @weather.temp_max %>&deg;<%= @weather.units %><br/>
+        Humidity: <%= @weather.humidity %>%<br/>
+        Atmospheric Pressure: <%= @weather.pressure %> hPa<br/><br/>
+        Fetch from cache ? <%= @cached ? 'yes' : 'no' %></p>
+      <% end %>
+
+      <h3>Search weather conditions</h3>
+      <%= form_with(url: root_path, method: 'get', local: true) do %>
+        <%= text_field_tag(:address, sanitize(@address), placeholder: 'Enter an address', size: 50) %>
+          <%= submit_tag('Search', class: 'btn btn-secondary') %><br/>
+      <% end %>
+      <%= render partial: 'shared/flash_messages', flash: flash %>
+    </div>
+    <div class="column"> </div>
+  </div>
+</div>
